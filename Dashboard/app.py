@@ -5,6 +5,13 @@ import os
 # Set page configuration
 st.set_page_config(page_title="Smart Agriculture Dashboard", layout="wide")
 
+# Get the absolute path to the current directory
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Function to construct the file path
+def get_file_path(filename):
+    return os.path.join(current_dir, filename)
+
 # Cache the data loading function
 @st.cache_data
 def load_data(file_path):
@@ -64,7 +71,7 @@ function navigateTo(page) {
 st.markdown(custom_css, unsafe_allow_html=True)
 
 # Load the data
-data = load_data('cleaned_data.csv')
+data = load_data(get_file_path('cleaned_data.csv'))
 avg_values = calculate_averages(data)
 
 # Page title
